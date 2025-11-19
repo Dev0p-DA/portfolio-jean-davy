@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Portfolio de BALEPA Jean Davy — Technicien Systèmes, Réseaux & Développeur Web (Django, WordPress)" />
+  <title>Portfolio — BALEPA Jean Davy</title>
+
+  <!-- Google Font (optionnel) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#3b82f6; /* blue-500 */
+      --accent-2:#06b6d4; /* cyan */
+      --glass: rgba(255,255,255,0.04);
+      --radius:12px;
+      --max-width:1100px;
+      --ff: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;
+      margin:0;
+      font-family:var(--ff);
+      background: linear-gradient(180deg, #071129 0%, #071726 100%);
+      color: #e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{
+      width:calc(100% - 32px);
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:32px 16px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:12px 0;
+      position:sticky;
+      top:0;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(10,14,20,0.6), rgba(10,14,20,0.25));
+      z-index:40;
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:48px;
+      height:48px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      color:white;
+      box-shadow: 0 6px 18px rgba(11,30,60,0.45);
+    }
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600;font-size:0.95rem}
+    nav a:hover{color:var(--accent);background:rgba(255,255,255,0.02)}
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap:28px;
+      align-items:center;
+      margin-top:28px;
+    }
+    @media (max-width:900px){ .hero{grid-template-columns:1fr; padding-bottom:12px} nav{display:none} }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: var(--radius);
+      padding:20px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .hero-left h1{
+      font-size:clamp(1.6rem, 3.4vw, 2.4rem);
+      margin:0 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+    .hero-left p.lead{
+      color:var(--muted);
+      margin:0 0 18px 0;
+      max-width:70ch;
+    }
+    .ctas{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .btn.primary{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;
+      box-shadow: 0 8px 28px rgba(56,120,255,0.12);
+    }
+    .btn.ghost{
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);
+      background:transparent;
+    }
+
+    /* right column profile */
+    .profile{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:stretch;
+    }
+    .profile .avatar{
+      width:100%;
+      height:220px;
+      border-radius:10px;
+      overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:grid;
+      place-items:center;
+      font-size:1.8rem;
+      color:var(--muted);
+    }
+    .meta{display:flex;flex-direction:column;gap:6px}
+    .meta .info{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:0.95rem}
+
+    /* sections */
+    section{margin-top:28px}
+    h2.section-title{
+      font-size:1.05rem;
+      text-transform:uppercase;
+      color:var(--muted);
+      letter-spacing:0.14em;
+      margin:0 0 12px 0;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    /* skills */
+    .skills-grid{
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:12px;
+    }
+    @media (max-width:700px){ .skills-grid{grid-template-columns:repeat(2,1fr)} }
+
+    .skill{
+      padding:12px;
+      border-radius:10px;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.03);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+    }
+    .skill .name{font-weight:700}
+    .skill .level{color:var(--muted);font-size:0.85rem}
+
+    /* projects */
+    .project-filters{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);cursor:pointer;border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-weight:700}
+    .chip.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white}
+
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:12px;
+    }
+    @media (max-width:1000px){ .projects-grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:650px){ .projects-grid{grid-template-columns:1fr} }
+
+    .project-card{
+      overflow:hidden;
+      border-radius:12px;
+      position:relative;
+      min-height:160px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:14px;
+      transition:transform .22s ease, box-shadow .22s ease;
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .project-card:hover{transform:translateY(-6px); box-shadow:0 14px 40px rgba(2,6,23,0.6)}
+    .project-card .meta{color:var(--muted);font-size:0.9rem}
+    .project-card h3{margin:6px 0 0 0}
+
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .tag{font-size:0.75rem;padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.02);color:var(--muted)}
+
+    /* modal */
+    .modal-backdrop{
+      position:fixed;inset:0;display:none;place-items:center;
+      background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.8));
+      z-index:90;padding:24px;
+    }
+    .modal{
+      width:100%;max-width:900px;background:linear-gradient(180deg, #030813, #071726);
+      border-radius:14px;padding:20px;border:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 24px 80px rgba(2,6,23,0.8);
+    }
+    .modal .close{float:right;cursor:pointer;color:var(--muted);font-weight:700}
+
+    /* contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    @media (max-width:900px){ .contact-grid{grid-template-columns:1fr} }
+    .form-row{display:flex;flex-direction:column;gap:8px}
+    input,textarea,select{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);
+      color:inherit;padding:10px;border-radius:8px;font-size:0.95rem;
+    }
+    textarea{min-height:120px;resize:vertical}
+    .form-note{color:var(--muted);font-size:0.9rem}
+
+    footer{
+      margin-top:32px;padding:20px 0;color:var(--muted);text-align:center;font-size:0.9rem
+    }
+
+    /* utilities */
+    .muted{color:var(--muted)}
+    .row{display:flex;gap:12px;align-items:center}
+    .hidden{display:none}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+  <header class="container" role="banner" aria-label="En-tête">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">JD</div>
+      <div>
+        <div style="font-weight:800">BALEPA Jean Davy</div>
+        <div style="font-size:0.85rem;color:var(--muted)">Technicien Systèmes & Développeur Web</div>
+      </div>
+    </div>
+
+    <nav role="navigation" aria-label="Navigation principale">
+      <a href="#about">À propos</a>
+      <a href="#projects">Projets</a>
+      <a href="#contact" class="hidden">Contact</a>
+      <a href="#skills" class="hidden">Compétences</a>
+      <a href="#contact" class="btn ghost">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container" role="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card hero-left">
+        <h1>Bonjour, je suis <span style="color:var(--accent)">Jean Davy</span> — Technicien Web & Développeur Django</h1>
+        <p class="lead">Je conçois et maintiens des sites web sécurisés et performants (Django, WordPress). J’accompagne aussi les entreprises sur l’infrastructure, la sécurité et la supervision.</p>
+
+        <div class="ctas">
+          <a class="btn primary" href="#projects" aria-label="Voir mes projets">Voir mes projets</a>
+          <a class="btn ghost" href="mailto:balepajean0506@gmail.com?subject=Contact%20Portfolio" aria-label="Me contacter">Me contacter</a>
+          <a class="btn ghost" href="#" id="downloadCv">Télécharger le CV</a>
+        </div>
+
+        <div style="margin-top:20px" class="card">
+          <h2 class="section-title">Résumé rapide</h2>
+          <p class="muted" style="margin:6px 0 0 0">
+            Technicien Web spécialisé en Django & WordPress — 5+ ans d'expérience. Administration réseau (pfSense, Cisco), virtualisation (ESXi), CI/CD & Docker.
+          </p>
+        </div>
+      </div>
+
+      <aside class="card profile" aria-label="Carte profil">
+        <div class="avatar" role="img" aria-label="Photo de Jean Davy">
+          <!-- Remplace par ta photo : <img src="mon-photo.jpg" alt="Jean Davy"> -->
+          Photo / Avatar
+        </div>
+
+        <div class="meta">
+          <div class="info"><strong>Téléphone :</strong>&nbsp;+237 693 87 89 70</div>
+          <div class="info"><strong>Email :</strong>&nbsp;balepajean0506@gmail.com</div>
+          <div class="info"><strong>Localisation :</strong>&nbsp;Yaoundé, Cameroun</div>
+          <div style="margin-top:6px;">
+            <a class="btn ghost" href="https://linkedin.com/in/jean-balepa-69b5a11b6" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn ghost" href="https://codeur.com/-bjdavy" target="_blank" rel="noopener">Portfolio</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="card">
+        <h2 class="section-title">À propos</h2>
+        <p class="muted">Technicien Web passionné, j’interviens sur la conception, la maintenance et la sécurisation d’applications web (Django & WordPress). J’ai une expérience significative en migrations, mise en production (Docker / Nginx), supervision (Nagios / Zabbix) et création d’espaces cloud sécurisés pour la collaboration inter-entreprises.</p>
+
+        <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap">
+          <div class="card" style="flex:1;min-width:220px">
+            <strong>Outils & Infra</strong>
+            <div class="muted" style="margin-top:6px">Docker • Nginx • Gunicorn • OVH • Heroku • PythonAnywhere</div>
+          </div>
+          <div class="card" style="flex:1;min-width:220px">
+            <strong>Dev & CMS</strong>
+            <div class="muted" style="margin-top:6px">Django • Django REST Framework • WordPress • HTMX • JavaScript</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="card">
+        <h2 class="section-title">Compétences</h2>
+
+        <div class="skills-grid" id="skillsGrid" aria-live="polite">
+          <!-- Javascript injecte les skills -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="card">
+        <h2 class="section-title">Projets</h2>
+
+        <div class="project-filters" id="filters" role="tablist" aria-label="Filtrer les projets">
+          <!-- chips -->
+        </div>
+
+        <div class="projects-grid" id="projectsGrid" aria-live="polite">
+          <!-- Javascript injecte les projets -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="card">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-grid">
+          <div>
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <label for="name">Nom</label>
+                <input id="name" name="name" required placeholder="Ton nom complet" />
+              </div>
+              <div class="form-row">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required placeholder="ton.email@example.com" />
+              </div>
+              <div class="form-row">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Explique ton besoin"></textarea>
+              </div>
+
+              <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+                <button class="btn primary" type="submit">Envoyer</button>
+                <div class="form-note muted">Ou envoie un email à <strong>balepajean0506@gmail.com</strong></div>
+              </div>
+            </form>
+
+            <div id="formStatus" class="muted" style="margin-top:12px" aria-live="polite"></div>
+          </div>
+
+          <aside>
+            <div class="card" style="margin-bottom:12px">
+              <strong>Infos pratiques</strong>
+              <div class="muted" style="margin-top:8px">
+                Téléphone: +237 693 87 89 70<br>
+                LinkedIn: <a href="https://linkedin.com/in/jean-balepa-69b5a11b6" target="_blank" rel="noopener">linkedin.com/in/jean-balepa-69b5a11b6</a><br>
+                CV: <a href="#" id="cvLink">Télécharger (PDF)</a>
+              </div>
+            </div>
+
+            <div class="card">
+              <strong>Compétences clés</strong>
+              <div class="muted" style="margin-top:8px">
+                Django, WordPress, PostgreSQL, Docker, pfSense, VMware ESXi, Nagios, Zabbix.
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      © <span id="year"></span> BALEPA Jean Davy — Tous droits réservés • <span class="muted">Portfolio interactif</span>
+    </footer>
+  </main>
+
+  <!-- Modal (hidden initially) -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" id="modalContent">
+      <div class="close" id="modalClose" role="button" tabindex="0" aria-label="Fermer la fenêtre">✕</div>
+      <div id="modalInner">
+        <!-- injected -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== data (personnalise ces objets) =====
+    const SKILLS = [
+      {name:"Django (4.x)", level:"Expert"},
+      {name:"Django REST Framework", level:"Intermédiaire"},
+      {name:"WordPress (thèmes & plugins)", level:"Avancé"},
+      {name:"HTML5 • CSS3 • JS", level:"Avancé"},
+      {name:"HTMX • Alpine.js", level:"Intermédiaire"},
+      {name:"Docker • Nginx • Gunicorn", level:"Intermédiaire"},
+      {name:"PostgreSQL • MySQL", level:"Avancé"},
+      {name:"pfSense • Cisco • VPN", level:"Intermédiaire"},
+      {name:"VMware ESXi • Veeam", level:"Intermédiaire"}
+    ];
+
+    const PROJECTS = [
+      {
+        id: "fala",
+        title: "Fala Money — Microfinance",
+        short: "Plateforme web et application mobile pour microfinance",
+        desc: "Conception d’outils internes en Django pour la gestion clients et transactions, création de thèmes WordPress, intégration SSL, migrations DNS et optimisation performance.",
+        tags: ["Django","WordPress","Sécurité"],
+        img: ""
+      },
+      {
+        id: "alm-cloud",
+        title: "ALM Consultants x PENTCAM — Espace Cloud Sécurisé",
+        short: "Solution cloud chiffrée pour collaboration inter-entreprises",
+        desc: "Mise en place d'un espace cloud sécurisé, gestion des permissions, chiffrement, MFA, automatisation des synchronisations et formation des équipes.",
+        tags: ["Sécurité","Cloud","Collaboration"],
+        img: ""
+      },
+      {
+        id: "caf-renov",
+        title: "CAFEN — Site & CRM",
+        short: "Site WordPress et CRM interne en Django",
+        desc: "Thème WordPress sur mesure, développement d’un CRM interne en Django, optimisation SEO et sécurisation.",
+        tags: ["WordPress","Django","SEO"],
+        img: ""
+      },
+      {
+        id: "lenectar",
+        title: "Lenectar — E-commerce local",
+        short: "Site vitrine et e-commerce pour producteur local",
+        desc: "Création du site, intégration paiement, optimisation front-end et suivi analytics.",
+        tags: ["E-commerce","Performance"],
+        img: ""
+      },
+      {
+        id: "kamix",
+        title: "Kamix SARL — Plateforme de paiement",
+        short: "Support au déploiement et maintenance",
+        desc: "Coordination des mises en production, déploiement et monitoring des applications mobiles et backends.",
+        tags: ["DevOps","Monitoring"],
+        img: ""
+      }
+    ];
+
+    // ===== render skills =====
+    const skillsGrid = document.getElementById('skillsGrid');
+    SKILLS.forEach(s=>{
+      const el = document.createElement('div');
+      el.className = 'skill';
+      el.innerHTML = `<div><div class="name">${s.name}</div><div class="muted level">${s.level}</div></div><div class="row"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12l5 5L22 4" stroke="white" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+      skillsGrid.appendChild(el);
+    });
+
+    // ===== render project filters and projects =====
+    const filtersEl = document.getElementById('filters');
+    const projectsGrid = document.getElementById('projectsGrid');
+
+    // unique tags
+    const TAGS = ['Tous', ...new Set(PROJECTS.flatMap(p=>p.tags))];
+
+    TAGS.forEach((t,i)=>{
+      const btn = document.createElement('button');
+      btn.className = 'chip' + (i===0 ? ' active':'');
+      btn.textContent = t;
+      btn.setAttribute('data-tag', t);
+      btn.addEventListener('click', ()=> {
+        document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+        btn.classList.add('active');
+        renderProjects(t === 'Tous' ? null : t);
+      });
+      filtersEl.appendChild(btn);
+    });
+
+    function renderProjects(filterTag = null){
+      projectsGrid.innerHTML = '';
+      const list = filterTag ? PROJECTS.filter(p=>p.tags.includes(filterTag)) : PROJECTS;
+      list.forEach(p=>{
+        const card = document.createElement('article');
+        card.className = 'project-card';
+        card.setAttribute('tabindex', '0');
+        card.innerHTML = `
+          <div>
+            <div class="meta">${p.tags.join(' • ')}</div>
+            <h3>${p.title}</h3>
+            <p class="muted">${p.short}</p>
+            <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:12px">
+            <button class="btn ghost" data-id="${p.id}" aria-label="Voir le projet ${p.title}">Détails</button>
+            <a class="btn ghost" href="#" aria-label="Visiter le projet ${p.title}">Live</a>
+          </div>
+        `;
+        // open modal on button
+        card.querySelector('button[data-id]').addEventListener('click', (e)=>{
+          openModal(p);
+        });
+        projectsGrid.appendChild(card);
+      });
+    }
+
+    // initial render
+    renderProjects();
+
+    // ===== modal logic =====
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalInner = document.getElementById('modalInner');
+    const modalClose = document.getElementById('modalClose');
+
+    function openModal(project){
+      modalInner.innerHTML = `
+        <h3 style="margin-top:0">${project.title}</h3>
+        <p class="muted">${project.tags.join(' • ')}</p>
+        <p style="margin-top:12px">${project.desc}</p>
+        <div style="margin-top:12px"><a class="btn ghost" href="#" aria-label="Voir le site ${project.title}">Visiter</a></div>
+      `;
+      modalBackdrop.style.display = 'grid';
+      modalBackdrop.setAttribute('aria-hidden','false');
+      // trap focus: focus close button
+      modalClose.focus();
+    }
+
+    function closeModal(){
+      modalBackdrop.style.display = 'none';
+      modalBackdrop.setAttribute('aria-hidden','true');
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', (e)=>{
+      if(e.target === modalBackdrop) closeModal();
+    });
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeModal();
+    });
+
+    // ===== contact form handling =====
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+
+    contactForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = contactForm.name.value.trim();
+      const email = contactForm.email.value.trim();
+      const message = contactForm.message.value.trim();
+      if(!name || !email || !message){
+        formStatus.textContent = 'Merci de remplir tous les champs.';
+        return;
+      }
+      // Simple validation passed. Use mailto fallback.
+      const subject = encodeURIComponent(`Contact portfolio - ${name}`);
+      const body = encodeURIComponent(`${message}\n\n---\n${name}\n${email}`);
+      const mailto = `mailto:balepajean0506@gmail.com?subject=${subject}&body=${body}`;
+      // open default mail client
+      window.location.href = mailto;
+      formStatus.textContent = 'Votre client mail va s’ouvrir. Si rien ne se passe, envoyez un email à balepajean0506@gmail.com';
+    });
+
+    // ===== misc =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // CV download (si tu veux remplacer par un PDF hébergé, mets l'URL)
+    document.getElementById('downloadCv').addEventListener('click', (e)=>{
+      e.preventDefault();
+      // Remplace le lien '#' par le vrai chemin du PDF (ex: '/assets/CV-Jean-Davy.pdf')
+      // Si tu veux que je génère le .docx ou .pdf, dis-le moi.
+      alert('Remplace le lien # dans le code par le chemin réel vers ton CV (ex: /assets/CV-Jean-Davy.pdf).');
+    });
+
+    // accessible focus ring polyfill for keyboard users (visual)
+    document.addEventListener('keydown', function onFirstTab(e) {
+      if (e.key === 'Tab') {
+        document.documentElement.style.scrollBehavior = 'smooth';
+        document.body.classList.add('user-is-tabbing');
+        window.removeEventListener('keydown', onFirstTab);
+      }
+    });
+  </script>
+</body>
+</html>
