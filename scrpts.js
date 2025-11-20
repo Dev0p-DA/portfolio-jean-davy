@@ -1,5 +1,4 @@
-<script>
-    // ===== data (personnalise ces objets) =====
+// ===== data (personnalise ces objets) =====
     const SKILLS = [
       {name:"Django (4.x)", level:"Expert"},
       {name:"Django REST Framework", level:"Intermédiaire"},
@@ -186,4 +185,3 @@
         window.removeEventListener('keydown', onFirstTab);
       }
     });
-  </script>
