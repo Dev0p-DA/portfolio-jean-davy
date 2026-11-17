@@ -557,7 +557,7 @@
           </div>
           <div style="display:flex;gap:8px;align-items:center;margin-top:12px">
             <button class="btn ghost" data-id="${p.id}" aria-label="Voir le projet ${p.title}">Détails</button>
-            <a class="btn ghost" href="#" aria-label="Visiter le projet ${p.title}">Live</a>
+            <a class="btn ghost" href="${p.url || '#'}" target="_blank" rel="noopener noreferrer" aria-label="Visiter le projet ${p.title}">LIVE</a>
           </div>
         `;
         // open modal on button
