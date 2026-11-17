@@ -468,15 +468,15 @@
       {
         id: "fala",
         title: "Fala Money — Microfinance",
-        short: "Plateforme web et application mobile pour microfinance",
-        desc: "Conception d’outils internes en Django pour la gestion clients et transactions, création de thèmes WordPress, intégration SSL, migrations DNS et optimisation performance.",
+        short: "Chef de projet web, Support Marketing et deploiement",
+        desc: "Conception d’outils internes en Django pour la gestion clients et transactions, création de thèmes WordPress, intégration SSL, migrations DNS et optimisation performance, support marketing de prospection.",
         tags: ["Django","WordPress","Sécurité","Collaboration","SEO","Performance","DevOps","Monitoring"],
         img: "",
         url: "https://falamoney.cm"
       },
       {
         id: "alm-cloud",
-        title: "ALM Consultants x PENTCAM — Espace Cloud Sécurisé",
+        title: "Développeur Web et responsable web",
         short: "Solution cloud chiffrée pour collaboration inter-entreprises",
         desc: "Mise en place d'un espace cloud sécurisé, gestion des permissions, chiffrement, MFA, automatisation des synchronisations et formation des équipes.",
         tags: ["WordPress","Sécurité","Collaboration","SEO","E-Learning","Performance","Monitoring"],
@@ -486,7 +486,7 @@
       {
         id: "caf-renov",
         title: "CAFEN — Site & CRM",
-        short: "Site WordPress et CRM interne en Django",
+        short: "Développeur Web",
         desc: "Thème WordPress sur mesure, développement d’un CRM interne en Django, optimisation SEO et sécurisation.",
         tags: ["WordPress","Sécurité","Collaboration","SEO","Performance","Monitoring"],
         img: "",
@@ -495,7 +495,7 @@
       {
         id: "lenectar",
         title: "Lenectar — E-commerce local",
-        short: "Site vitrine et e-commerce pour producteur local",
+        short: "Développeur Web",
         desc: "Création du site, intégration paiement, optimisation front-end et suivi analytics.",
         tags: ["WordPress","Sécurité","Collaboration"],
         img: "",
@@ -504,11 +504,56 @@
       {
         id: "kamix",
         title: "Kamix SARL — Plateforme de paiement et de transfert de fond",
-        short: "Support au déploiement et maintenance",
+        short: "Support au déploiement marketing et web",
         desc: "Coordination des mises en production, déploiement et monitoring des applications mobiles et backends.",
         tags: ["DevOps","Monitoring","Django"],
         img: "",
         url: "https://kamix.io"
+      },
+      {
+        id: "kaicy",
+        title: "Kaicy House — Plateforme de ecommerce",
+        short: "Développeur Web",
+        desc: "Conception, développement et administration d’une solution e-commerce dédiée à la commercialisation de produits cosmétiques, Mise en place de la structure du catalogue produits, Intégration des fonctionnalités de présentation et de gestion des produits, Optimisation de l'expérience utilisateur et de la navigation sur la boutique en ligne.",
+        tags: ["WordPress","Sécurité","Collaboration","SEO","Performance","Monitoring"],
+        img: "",
+        url: "https://kaicyhouse.store"
+      },
+      {
+        id: "gates",
+        title: "Gates Solutions Center — Dépannage et vente — site vitrine et ecommerce",
+        short: "Développeur Web et Community Manager",
+        desc: "Conception, développement et administration une solution web et de e-commerce dédiée à la commercialisation de produits électroniques, Mise en place de la structure du catalogue produits, Intégration des fonctionnalités de présentation et de gestion des produits, Optimisation de l'expérience utilisateur et de la navigation sur la boutique en ligne.",
+        tags: ["WordPress","Sécurité","Collaboration","SEO","Performance","Monitoring"],
+        img: "",
+        url: "https://gatessolutioncenter.cm"
+      },
+      {
+        id: "nkeuc",
+        title: "Group Nkeuc SARL — Entreprise immobilière",
+        short: "Développeur Web",
+        desc: "Création d’un tunnel de vente, Mise en place des plugins adéquats, Création de maquettes & charte graphique",
+        tags: ["WordPress","SEO","Performance","Monitoring"],
+        img: "",
+        url: "https://groupnkeuc.pro/echelonnement "
+      },
+      {
+        id: "trendies",
+        title: "Chic Trendies — Prêt à porter vêtements et accessoires",
+        short: "Community Manager",
+        desc: "Création et administration d'une page TikTok professionnelle, Mise en place de la présence digitale de la marque, Publication de contenus destinés à promouvoir les collections de vêtements, Développement de la visibilité de la marque auprès de sa cible",
+        tags: ["TikTok","SEO","Infographie","Community Management"],
+        img: "",
+        url: "https://share.google/VI9geaYH7j5kKj0FH"
+      },
+      {
+        id: "mboa",
+        title: "Mboa Online — Ecommerce de chaussures",
+        short: "Développeur Web et responsable marketing",
+        desc: "Conception, développement et administration d’une solutions e-commerce, Assistant en création de contenus promotionnels pour les réseaux sociaux, Élaboration de stratégies de communication digitale pour promouvoir les services, Élaboration d’une stratégie de prospection pour la création d’un point de relais à Yaoundé.",
+        tags: ["WordPress","Sécurité","Collaboration","SEO","Performance","Monitoring"],
+        img: "",
+        url: "https://shop.mboaonline.cm"
       },
     ];
 
@@ -581,7 +626,7 @@
         <h3 style="margin-top:0">${project.title}</h3>
         <p class="muted">${project.tags.join(' • ')}</p>
         <p style="margin-top:12px">${project.desc}</p>
-        <div style="margin-top:12px"><a class="btn ghost" href="#" aria-label="Voir le site ${project.title}">Visiter</a></div>
+        <div style="margin-top:12px"><a class="btn ghost" href="${p.url || '#'}" target="_blank" rel="noopener noreferrer" aria-label="Voir le site ${p.title}">LIVE</a></div>
       `;
       modalBackdrop.style.display = 'grid';
       modalBackdrop.setAttribute('aria-hidden','false');
